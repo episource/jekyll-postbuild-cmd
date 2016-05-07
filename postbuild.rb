@@ -1,6 +1,6 @@
 module Jekyll
     module Postbuild
-        class CmdError < StandardError; end
+        class PostbuildCmdError < StandardError; end
 
         Jekyll::Hooks.register(:site, :post_write) do |site|
             commands = site.config['postbuild'] || []
@@ -9,7 +9,12 @@ module Jekyll
                 result = system(expanded_cmd)
 
                 if (!result)
-                    raise CmdError, "Postbuild command returned a non-zero exit code: %s" % expanded_cmd
+                    err = "Postbuild command returned a non-zero exit code: %s" % expanded_cmd
+                    if site.config['watch']
+                        STDERR.puts err
+                    else
+                        raise PostbuildCmdError, err
+                    end
                 end
             }
         end
