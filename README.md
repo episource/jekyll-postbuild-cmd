@@ -24,3 +24,5 @@ The command may include predefined tokens to be replaced by jenkins site variabl
  - `%{baseurl}` -> `site.baseurl`
  - `%{dest}` -> `site.dest`
  - `%{source}` -> `site.source`
+ - `%{pages}` ->  a whitespace separated list of all absolute paths of the generated pages (e.g. `'/src/dest/a.html' '/src/dest/b.html' '/src/dest/c.scss'`)
+ - `%{html_pages}` -> like `%{pages}`, but only files ending with `.html`
