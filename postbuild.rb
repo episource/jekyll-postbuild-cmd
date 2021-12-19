@@ -23,7 +23,7 @@ module Jekyll
                     if site.config['watch']
                         STDERR.puts err
                     else
-                        raise PostBuildCmdError, err
+                        raise PostbuildCmdError, err
                     end
                 end
             }
